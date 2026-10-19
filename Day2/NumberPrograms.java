@@ -24,9 +24,11 @@ public class NumberPrograms {
                     System.out.println(evenOdd + (evenOdd % 2 == 0 ? " is even." : " is odd."));
                     break;
                 case 2:
-                    System.out.print("Enter three numbers separated by spaces: ");
+                    System.out.print("Enter the first number: ");
                     int a = readInt();
+                    System.out.print("Enter the second number: ");
                     int b = readInt();
+                    System.out.print("Enter the third number: ");
                     int c = readInt();
                     System.out.println("Largest number: " + Math.max(a, Math.max(b, c)));
                     break;
@@ -74,30 +76,13 @@ public class NumberPrograms {
 
     private static int readInt() {
         while (true) {
-            String input = SC.nextLine().trim();
             try {
-                // Also supports entering multiple numbers on one line for option 2.
-                if (input.contains(" ")) {
-                    String[] parts = input.split("\\s+");
-                    for (int i = 1; i < parts.length; i++) {
-                        // Keep extra values available for the next reads.
-                        pendingValues.add(parts[i]);
-                    }
-                    input = parts[0];
-                }
-                if (!pendingValues.isEmpty()) {
-                    String value = input;
-                    input = pendingValues.remove(0);
-                    pendingValues.add(0, value);
-                }
-                return Integer.parseInt(input);
+                return Integer.parseInt(SC.nextLine().trim());
             } catch (NumberFormatException ex) {
                 System.out.print("Invalid integer. Try again: ");
             }
         }
     }
-
-    private static final java.util.List<String> pendingValues = new java.util.ArrayList<>();
 
     private static boolean isPrime(int n) {
         if (n < 2) return false;
